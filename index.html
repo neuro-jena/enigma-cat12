@@ -65,7 +65,7 @@
 
                 <h4>Installation of the standalone version of CAT12</h4>
                 <ol>
-                  <li>Download CAT12 standalone version for <a href="http://www.neuro.uni-jena.de/cat12/CAT12.8.1_r1980_R2017b_MCR_Mac.zip">macOS</a> or <a href="http://www.neuro.uni-jena.de/cat12/CAT12.8.1_r1980_R2017b_MCR_Linux.zip">Linux</a> (copy the redirected link to your browser if the download does not start automatically or load the latest file for your system with the name cat12_latest_R2017b_MCR* <a href="http://www.neuro.uni-jena.de/cat12/">here</a>).</li>
+                  <li>Download the CAT12 standalone version for <a href="http://www.neuro.uni-jena.de/cat12/CAT12.8.1_r1980_R2017b_MCR_Mac.zip">macOS</a> or <a href="http://www.neuro.uni-jena.de/cat12/CAT12.8.1_r1980_R2017b_MCR_Linux.zip">Linux</a> (copy the link to your browser if the download does not start automatically or load the latest file for your system with the name cat12_latest_R2017b_MCR* <a href="http://www.neuro.uni-jena.de/cat12/">here</a>).</li>
                   <li>Open the MCR_v93.webloc link in the installed folder, which automatically downloads the Matlab Runtime for R2017b.</li>
                   <li>Install the Matlab Runtime with the "v93" folder preferably in the same folder.</li>
                 </ol>
@@ -141,7 +141,7 @@
   /data/enigma-data/raw/CAT12.8.1/mri/mwp1sub*.nii -a1 "[6 6 6]" -a2 "'s6'"
                 </code></pre>
                 <p><i>Smooth the modulated and warped segmentations for gray matter with 6mm and prepend the string "s6" to the smoothed files. Optionally also smooth the white matter segmentations (i.e. mwp2*) and the warped segmentations without modulation (i.e. wp1* and wp2*) and also consider different smoothing sizes.</i></p>
-                The recommended smoothing size for analyzing the data is 6mm. In order to use the data for machine learning with <a href="http://proniapredictors.eu/neurominer/index.html">NeuroMiner</a> no smoothing is necessary.<br/>
+                The recommended smoothing size for analyzing the volume data is 6mm. In order to use the data for machine learning with <a href="http://proniapredictors.eu/neurominer/index.html">NeuroMiner</a> no smoothing is necessary.<br/>
                 Please note the multiple quotes for parameter a2.<br/><br/>
 
                 <h5>Resample and Smooth Surface Data</h5>
@@ -159,19 +159,30 @@
   -b /software/CAT12.8.1_MCR/standalone/cat_standalone_get_quality.m \
   /data/enigma-data/raw/CAT12.8.1/mri/mwp1sub*.nii  -a1 "'Quality_measures_volumes.csv'" -a2 "1"
                 </code></pre>
-                <p><i>Estimate mean z-scores using global scaling with TIV for the modulated and warped segmentations for gray matter and save quality measures in the file Quality_measures_volumes.csv for external analysis.</i></p>
+                <p><i>Estimate sample homogeneity (after preprocessing) using mean z-scores with global scaling with TIV for the modulated and warped segmentations for gray matter and save quality measures in the file Quality_measures_volumes.csv for external analysis.</i></p>
                 Please note the multiple quotes for parameter a1.<br/><br/>
 
                 <h5>Estimate and Save Quality Measures for Surface Data</h5>
                 <pre><code>
 /software/CAT12.8.1_MCR/standalone/cat_standalone.sh -m /software/CAT12.8.1_MCR/v93 \
   -b /software/CAT12.8.1_MCR/standalone/cat_standalone_get_quality.m \
-  /data/enigma-data/raw/CAT12.8.1/surf/s12.mesh.thickness.resampled_32k.sub*  -a1 "'Quality_measures_surfaces.csv'"
+  /data/enigma-data/raw/CAT12.8.1/surf/s12.mesh.thickness.resampled_32k.sub* \
+  -a1 "'Quality_measures_surfaces.csv'"
                 </code></pre>
-                <p><i>Estimate mean z-scores for resampled and smoothed thickness values and save quality measures in Quality_mesures_surfaces.csv for external analysis.</i></p>
+                <p><i>Estimate sample homogeneity (after preprocessing) using mean z-scores for resampled and smoothed thickness values and save quality measures in Quality_mesures_surfaces.csv for external analysis.</i></p>
                 Please note the multiple quotes for parameter a1.<br/><br/>
 
-                <h5>Estimate total intra-cranial volume (TIV)</h5>
+                <h5>Estimate and Save Weighted Overall Image Quality</h5>
+                <pre><code>
+/software/CAT12.8.1_MCR/standalone/cat_standalone.sh -m /software/CAT12.8.1_MCR/v93 \
+  -b /software/CAT12.8.1_MCR/standalone/cat_standalone_get_IQR.m \
+  /data/enigma-data/raw/CAT12.8.1/report/cat_*.xml \
+  -a1 "'IQR.txt'"
+                </code></pre>
+                <p><i>Estimate weighted overall image quality (before preprocessing) using xml-files in report folder and save quality measures in IQR.txt for external analysis.</i></p>
+                Please note the multiple quotes for parameter a1.<br/><br/>
+
+                <h5>Estimate Total Intra-cranial Volume (TIV)</h5>
                 <pre><code>
 /software/CAT12.8.1_MCR/standalone/cat_standalone.sh -m /software/CAT12.8.1_MCR/v93 \
   -b /software/CAT12.8.1_MCR/standalone/cat_standalone_get_TIV.m \
@@ -259,23 +270,26 @@ your_spm12_folder/toolbox/cat12/standalone/cat_standalone.sh -ns -e -m /usr/loca
                 The recommended smoothing size for analyzing the surface data is 12mm. In order to use the data for machine learning with <a href="http://proniapredictors.eu/neurominer/index.html">NeuroMiner</a> no smoothing is necessary and a the filter size should be set to "0".<br/><br/>
 
                 <h5>Estimate and Save Quality Measures for Volume and Surface Data</h5>
-                <p>Use "Data Quality-> Save quality parameters for external analysis" from the CAT12 GUI.</p>
+                <p>Use "Data Quality -> Check Sample Homogeneity for Very Large Samples Using Mean z-Score" from the CAT12 GUI.</p>
 
-                <h5>Estimate total intra-cranial volume (TIV)</h5>
+                <h5>Estimate and Save Weighted Overall Image Quality</h5>
+                <p>Use "Data Quality -> Get Weighted Overall Image Quality" from the CAT12 GUI.</p>
+
+                <h5>Estimate Total Intra-cranial Volume (TIV)</h5>
                 <p>Use "Get TIV" from the CAT12 GUI.</p>
                 
                 Optional (with graphical output):
                 <h5>Check Sample Homogeneity for Volume and Surface Data</h5>
-                <p>Use "Data Quality-> Check Data homogeneity" from the CAT12 GUI.</p>
+                <p>Use "Data Quality -> Check Data Homogeneity" from the CAT12 GUI.</p>
                 
                 Optional (as an alternative to the ENIGMA Freesurfer protocol):
                 <h5>Estimate mean volumes and mean surface values inside ROI</h5>
-                <p>Use "ROI Tools-> Estimate Mean Value inside ROI for External Analysis" from the CAT12 GUI and select the catROI*xml files in the label folder.</p>
+                <p>Use "ROI Tools -> Estimate Mean Value inside ROI for External Analysis" from the CAT12 GUI and select the catROI*xml files in the label folder.</p>
                 
                 Optional (for general use with other machine learning tools):
                 <h5>Save Volume or Surface Data as mat File</h5>
-                Use "Volume Tools-> Save (resampled) Volume Data as mat-File" from the CAT12 GUI and select smoothed gray/white matter segmentations (modulated normalized or affine registered DARTEL export).<br/>
-                Use "Surface Tools-> Save Volume Data as mat-File" from the CAT12 GUI and select resampled and smoothed surface data.<br/><br/>
+                Use "Volume Tools -> Save (resampled) Volume Data as mat-File" from the CAT12 GUI and select smoothed gray/white matter segmentations (modulated normalized or affine registered DARTEL export).<br/>
+                Use "Surface Tools -> Save Volume Data as mat-File" from the CAT12 GUI and select resampled and smoothed surface data.<br/><br/>
               </div>
             </div>
           </article>
