@@ -35,7 +35,7 @@
                   <ul class="actions stacked special animated spinY">
                     <li><a href="#standalone" class="button">Standalone Version</a></li>
                     <li><a href="#standard" class="button">Standard Version</a></li>
-                    <li><a href="#Contact" class="button">Contact</a></li>
+                    <li><a href="mailto:christian.gaser@uni-jena.de" class="button">Contact</a></li>
                     <!--<li><a href="#elements" class="button">Elements</a></li>-->
                   </ul>
                 </nav>
@@ -207,7 +207,8 @@
                 <p>In contrast to the Matlab standard version of CAT12, the standalone version only supports serial preprocessing of multiple files. In order to speed up preprocessing and to distribute your jobs or batches to several processors or cores, you can use the script standalone/cat_parallize.sh:</p>
                 <pre><code>
 /software/CAT12.8.1_MCR/standalone/cat_parallelize.sh -p 8 -l /tmp \
-  -c "-m /software/CAT12.8.1_MCR/v93 -b /software/CAT12.8.1_MCR/standalone/cat_standalone_segment_enigma.m" \ 
+  -c "-m /software/CAT12.8.1_MCR/v93 \
+  -b /software/CAT12.8.1_MCR/standalone/cat_standalone_segment_enigma.m" \ 
   /data/enigma-data/raw/sub*.nii
                 </code></pre>
                 <p><i>Parallelize CAT12 ENIGMA preprocessing by splitting all sub*.nii files into 8 jobs  (processes) and save log file in /tmp folder.
