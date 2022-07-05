@@ -1,0 +1,331 @@
+<!DOCTYPE HTML>
+<!--
+  Indivisible by Pixelarity
+  pixelarity.com | hello@pixelarity.com
+  License: pixelarity.com/license
+-->
+<html>
+  <head>
+    <title>ENIGMA CAT12</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+    <link rel="stylesheet" href="assets/css/main.css" />
+    <noscript><link rel="stylesheet" href="assets/css/noscript.css" /></noscript>
+  </head>
+  <body class="is-preload-0 is-preload-1">
+
+    <!-- Wrapper -->
+      <div id="wrapper">
+
+        <!-- Home -->
+          <article id="home" class="panel special">
+            <div class="image">
+              <img src="images/pic01.jpg" alt="" data-position="center center" />
+            </div>
+            <div class="content">
+              <div class="inner">
+                <header>
+                  <h1>Computational Anatomy Toolbox for Standardized Processing of ENIGMA Data</h1>
+                  <p>This tool uses <a href="https://neuro-jena.github.io/cat/">CAT12</a> to process voxel- and surface-based morphometry for MRI data in a standardized way for <a href="https://enigma.ini.usc.edu/">ENIGMA</a> data. The current version is CAT12.8.1.</p><br/>
+                  <p>You can either use the <a href="#standalone">standalone version</a> or the <a href="#standard">standard version</a> of CAT12. The advantage of the standalone version is that no Matlab license is needed. Only the (free) Matlab Runtime R2017b (v93) has to be downloaded.</p><br/>
+                  <p>For any questions or suggestions please contact <a href="mailto:christian.gaser@uni-jena.de">me</a>.</p>
+                  <p>Christian Gaser, Jena University Hospital</p>
+                </header>
+                <nav id="nav">
+                  <ul class="actions stacked special animated spinY">
+                    <li><a href="#standalone" class="button">Standalone Version</a></li>
+                    <li><a href="#standard" class="button">Standard Version</a></li>
+                    <li><a href="#Contact" class="button">Contact</a></li>
+                    <!--<li><a href="#elements" class="button">Elements</a></li>-->
+                  </ul>
+                </nav>
+                <ul class="icons">
+                  <li><a href="https://twitter.com/CAT12Toolbox" class="icon brands fa-twitter"><span class="label">Twitter</span></a></li>
+                  <li><a href="https://github.com/ChristianGaser" class="icon brands fa-github"><span class="label">GitHub</span></a></li>
+                  <li><a href="mailto:christian.gaser@uni-jena.de" class="icon solid fa-envelope"><span class="label">Email</span></a></li>
+                </ul>
+              </div>
+            </div>
+          </article>
+
+        <!-- Standalone -->
+          <article id="standalone" class="panel secondary">
+            <div class="content">
+              <ul class="actions animated spinX">
+                <li><a href="#" class="button small back">Home</a></li>
+              </ul>
+              <div class="inner">
+                <header>
+                  <h2>Standalone Version of CAT12</h2>
+                </header>
+
+                <h3>Use of the standalone version of CAT12</h3>
+                
+                <p>The advantage of the standalone version is that no Matlab license is required. Only the (free) Matlab Runtime has to be downloaded. However, there are some limitations (e.g. no parallelization and no interactive help in the GUI version) and the standalone version is mainly intended to run without GUI on Unix systems.</p>
+
+                <h4>Installation of the standalone version of CAT12</h4>
+                <ol>
+                  <li>Download CAT12 standalone version for <a href="http://www.neuro.uni-jena.de/cat12/CAT12.8.1_r1980_R2017b_MCR_Mac.zip">macOS</a> or <a href="http://www.neuro.uni-jena.de/cat12/CAT12.8.1_r1980_R2017b_MCR_Linux.zip">Linux</a> (copy the redirected link to your browser if the download does not start automatically or load the latest file for your system with the name cat12_latest_R2017b_MCR* <a href="http://www.neuro.uni-jena.de/cat12/">here</a>).</li>
+                  <li>Open the MCR_v93.webloc link in the installed folder, which automatically downloads the Matlab Runtime for R2017b.</li>
+                  <li>Install the Matlab Runtime with the "v93" folder preferably in the same folder.</li>
+                </ol>
+
+                <h4>Use of the standalone version of CAT12</h4>
+                If you prefer to use the standalone version of CAT12 via the GUI, you can call the GUI version with the following command:<br/><br/>
+                <pre><code>
+/software/CAT12.8.1_MCR/run_spm12.sh /software/CAT12.8.1_MCR/v93
+                </code></pre>
+
+                <p>In order to use the GUI version, please see the instructions for the <a href="#standard">standard version</a>.<br/><br/>
+                For the following examples, we assume that the CAT12 standalone version was installed in "/software/CAT12.8.1_MCR" and the Matlab Runtime in "/software/CAT12.8.1_MCR/v93" and your T1-data are located in "/data/enigma-data/raw" and are named "sub*.nii.gz".<br/>
+                See the help text of standalone/cat_standalone.sh for more examples and a description of additional options.<br/></p>
+
+                <h5>DICOM Import</h5>
+                <pre><code>
+/software/CAT12.8.1_MCR/standalone/cat_standalone.sh -m /software/CAT12.8.1_MCR/v93 \
+  -b /software/CAT12.8.1_MCR/standalone/cat_standalone_dicom2nii.m /data/enigma-data/dicom/*.dcm \
+  -a1 "'patid_date'" -a2 "{'raw'}"
+                </code></pre>
+                <p><i>Import DICOM files *.dcm and save converted nifti files in directory "raw" with structure
+                &lt;PatientID&gt;/&lt;StudyDate-StudyTime>/&lt;ProtocollName&gt;</i><br/><br/>
+                Other options for directory structure are:
+                <div class="table-wrapper">
+                  <table>
+                    <tbody>
+                      <tr>
+                        <td>flat</td>
+                        <td>No directory hierarchy</td>
+                      </tr>
+                      <tr>
+                        <td>series</td>
+                        <td>&lt;ProtocollName&gt;</td>
+                      </tr>
+                      <tr>
+                        <td>patid_date</td>
+                        <td>&lt;PatientID&gt;/&lt;StudyDate-StudyTime>/&lt;ProtocollName&gt;</td>
+                      </tr>
+                      <tr>
+                        <td>patid</td>
+                        <td>&lt;PatientID&gt;/&lt;ProtocollName&gt;</td>
+                      </tr>
+                      <tr>
+                        <td>date_time</td>
+                        <td>&lt;StudyDate-StudyTime>/&lt;ProtocollName&gt;</td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+                <p>Please note the multiple quotes for parameter a1.</p>
+
+                <h5>Preprocessing</h5>
+                <pre><code>
+/software/CAT12.8.1_MCR/standalone/cat_standalone.sh -m /software/CAT12.8.1_MCR/v93 \
+  -b /software/CAT12.8.1_MCR/standalone/cat_standalone_segment_enigma.m \
+  /data/enigma-data/raw/sub*.nii.gz
+                </code></pre>
+                <p><i>Unzip and preprocess (segment) the files sub*.nii.gz using the ENIGMA CAT12 preprocessing batch. The preprocessed data is stored in a folder named after the CAT12 version (e.g. CAT12.8.1) and in separate subfolders (mri, surf, label and report) located in this folder. Data that contain non-brain areas (e.g. bias-corrected images in native space) are de-faced after preprocessing and saved with the prefix "anon_".</i></p>
+
+                <h5>Preprocessing without surface estimation</h5>
+                <pre><code>
+/software/CAT12.8.1_MCR/standalone/cat_standalone.sh -m /software/CAT12.8.1_MCR/v93 \
+  -b /software/CAT12.8.1_MCR/standalone/cat_standalone_segment_enigma.m \
+  -a "matlabbatch{1}.spm.tools.cat.estwrite.output.surface = 0;" /data/enigma-data/raw/sub*.nii.gz
+                </code></pre>
+                <p><i>Same as above, but skip surface extraction.</i></p>
+
+                <h5>Smoothing of Volume Data</h5>
+                <p>This step is optional if you intend to statistically analyze your VBM data.</p>
+                <pre><code>
+/software/CAT12.8.1_MCR/standalone/cat_standalone.sh -m /software/CAT12.8.1_MCR/v93 \
+  -b /software/CAT12.8.1_MCR/standalone/cat_standalone_smooth.m \
+  /data/enigma-data/raw/CAT12.8.1/mri/mwp1sub*.nii -a1 "[6 6 6]" -a2 "'s6'"
+                </code></pre>
+                <p><i>Smooth the modulated and warped segmentations for gray matter with 6mm and prepend the string "s6" to the smoothed files. Optionally also smooth the white matter segmentations (i.e. mwp2*) and the warped segmentations without modulation (i.e. wp1* and wp2*) and also consider different smoothing sizes.</i></p>
+                The recommended smoothing size for analyzing the data is 6mm. In order to use the data for machine learning with <a href="http://proniapredictors.eu/neurominer/index.html">NeuroMiner</a> no smoothing is necessary.<br/>
+                Please note the multiple quotes for parameter a2.<br/><br/>
+
+                <h5>Resample and Smooth Surface Data</h5>
+                <pre><code>
+/software/CAT12.8.1_MCR/standalone/cat_standalone.sh -m /software/CAT12.8.1_MCR/v93 \
+  -b /software/CAT12.8.1_MCR/standalone/cat_standalone_resample.m \
+  /data/enigma-data/raw/CAT12.8.1/surf/lh.thickness.sub* -a1 "12" -a2 "1"
+                </code></pre>
+                <p><i>Resample and smooth the thickness files lh.thickness.sub* with 12mm and save the resampled meshes as 32k mesh (HCP conform meshes). Only the left surface file has to be defined. The right hemisphere is processed automatically.</i></p>
+                The recommended smoothing size for analyzing the surface data is 12mm. In order to use the data for machine learning with <a href="http://proniapredictors.eu/neurominer/index.html">NeuroMiner</a> no smoothing is necessary and a the filter size should be set to "0".<br/><br/>
+
+                <h5>Estimate and Save Quality Measures for Volume Data</h5>
+                <pre><code>
+/software/CAT12.8.1_MCR/standalone/cat_standalone.sh -m /software/CAT12.8.1_MCR/v93 \
+  -b /software/CAT12.8.1_MCR/standalone/cat_standalone_get_quality.m \
+  /data/enigma-data/raw/CAT12.8.1/mri/mwp1sub*.nii  -a1 "'Quality_measures_volumes.csv'" -a2 "1"
+                </code></pre>
+                <p><i>Estimate mean z-scores using global scaling with TIV for the modulated and warped segmentations for gray matter and save quality measures in the file Quality_measures_volumes.csv for external analysis.</i></p>
+                Please note the multiple quotes for parameter a1.<br/><br/>
+
+                <h5>Estimate and Save Quality Measures for Surface Data</h5>
+                <pre><code>
+/software/CAT12.8.1_MCR/standalone/cat_standalone.sh -m /software/CAT12.8.1_MCR/v93 \
+  -b /software/CAT12.8.1_MCR/standalone/cat_standalone_get_quality.m \
+  /data/enigma-data/raw/CAT12.8.1/surf/s12.mesh.thickness.resampled_32k.sub*  -a1 "'Quality_measures_surfaces.csv'"
+                </code></pre>
+                <p><i>Estimate mean z-scores for resampled and smoothed thickness values and save quality measures in Quality_mesures_surfaces.csv for external analysis.</i></p>
+                Please note the multiple quotes for parameter a1.<br/><br/>
+
+                <h5>Estimate total intra-cranial volume (TIV)</h5>
+                <pre><code>
+/software/CAT12.8.1_MCR/standalone/cat_standalone.sh -m /software/CAT12.8.1_MCR/v93 \
+  -b /software/CAT12.8.1_MCR/standalone/cat_standalone_get_TIV.m \
+  /data/enigma-data/raw/CAT12.8.1/report/cat_*.xml  -a1 "'TIV.txt'" -a2 "1" -a3 "0".
+                </code></pre>
+                <p><i>Save TIV values for all selected data in TIV.txt. Please note the multiple quotes to define the output name with a1.<br/>
+                The parameter a2 allows you to save only the TIV (1) or additionally to save also the global volumes for GM, WM, CSF, and WM hyperintensities (0). With parameter a3 you can add file names to the 1st column: 0 - save values only; 1 - add file name; 2 - add folder and file names.</i></p>
+                Please note that parameter a3 is available only from version r1987 and you must add the parameter a2 in addition.<br/><br/>
+
+
+                <h5>Estimate mean volumes and mean surface values inside ROI</h5>
+                <p>This step is optional (as an alternative to the ENIGMA Freesurfer protocol).</p>
+                <pre><code>
+/software/CAT12.8.1_MCR/standalone/cat_standalone.sh -m /software/CAT12.8.1_MCR/v93 \
+  -b /software/CAT12.8.1_MCR/standalone/cat_standalone_get_ROI_values.m \
+  /data/enigma-data/raw/CAT12.8.1/label/catROI*.xml  -a1 "'ROI'"
+                </code></pre>
+                <p><i>Save mean surface values (e.g. cortical thickness) and mean volumes (in ml) for all selected data in a csv-file. The csv-file is named "ROI_" followed by the atlas name and the name of the measure (e.g. thickness or Vgm).</i></p>
+                Please note the multiple quotes to define the ROI name.<br/><br/>
+
+                <h4>Parallelization of the standalone version</h4>
+                <p>In contrast to the Matlab standard version of CAT12, the standalone version only supports serial preprocessing of multiple files. In order to speed up preprocessing and to distribute your jobs or batches to several processors or cores, you can use the script standalone/cat_parallize.sh:</p>
+                <pre><code>
+/software/CAT12.8.1_MCR/standalone/cat_parallelize.sh -p 8 -l /tmp \
+  -c "-m /software/CAT12.8.1_MCR/v93 -b /software/CAT12.8.1_MCR/standalone/cat_standalone_segment_enigma.m" \ 
+  /data/enigma-data/raw/sub*.nii
+                </code></pre>
+                <p><i>Parallelize CAT12 ENIGMA preprocessing by splitting all sub*.nii files into 8 jobs  (processes) and save log file in /tmp folder.
+                </i></p>
+
+              </div>
+            </div>
+          </article>
+
+        <!-- standard -->
+          <article id="standard" class="panel secondary">
+            <div class="content">
+              <ul class="actions animated spinX">
+                <li><a href="#" class="button small back">Home</a></li>
+              </ul>
+              <div class="inner">
+                <header>
+                  <h2>Matlab Standard Version of CAT12</h2>
+                </header>
+
+                <h3>Use of the standard version of CAT12</h3>
+                
+                <p>You need a Matlab license to run the standard version of CAT12.</p>
+
+                <h4>Installation of CAT12</h4>
+                <ol>
+                  <li>Download the <a href="http://www.neuro.uni-jena.de/cat12/cat12_latest.zip">latest</a> CAT12 version. If you need older versions select them <a href="http://www.neuro.uni-jena.de/cat12/">here</a>.
+                  <li>Unzip and copy the cat12 folder to the spm12/toolbox directory. Please remove all older versions of CAT12 before installation.</li>
+                </ol>
+
+                <h4>Calling CAT12 from the shell and running in headless mode without display</h4>
+                If you do not want to use the CAT12 and SPM12 graphical user interface, you can use the cat_standalone.sh script located in the cat12 standalone folder to call batch files. You can use any of the supplied batches in the standalone folder, but you can also create your own batches using the batch manager in SPM12. Please note that the supplied standalone batches must be called in CAT12 expert mode and this script only works with newer CAT12 versions from r1984 onwards.<br/><br/>
+                The cat_standalone.sh script can be used with few changes with the same flags as for the standalone version. You just need to add the flags "-ns" to turn off standalone mode and "-e" to call CAT12 in expert mode. Also, the flag "-m" now defines the Matlab command and "-s" the SPM12 folder, but can be skipped if they are found automatically. For example, to preprocess (segment) files, you can call:<br/><br/>
+                <pre><code>
+your_spm12_folder/toolbox/cat12/standalone/cat_standalone.sh -ns -e -m /usr/local/bin/matlab \
+  -b your_spm12_folder/toolbox/cat12/standalone/cat_standalone_segment_enigma.m \
+  -s your_spm12_folder /data/enigma-data/raw/sub*.nii.gz
+                </code></pre>
+
+                <p>See the <a href="#standalone">standalone version</a> for more examples.</p>
+
+                <h4>Use of CAT12</h4>
+                <p>See the <a href="http://www.neuro.uni-jena.de/cat12-html/cat_starting.html">Quick Start Guide</a> for step-by-step instructions for using CAT12 and also check the <a href="http://www.neuro.uni-jena.de/cat12/CAT12-Manual.pdf">CAT12-Manual</a>.</p>
+
+                <h4><red>Important</red></h4>
+                <red><p>CAT12 should be used in "expert mode" either by calling "cat12('expert')" from the Matlab command line or by using "Switch to Expert Mode" in the CAT12 GUI.</p></red>
+
+                <h5>DICOM Import</h5>
+                <p>Use "DICOM Import" from the SPM12 GUI.</p>
+
+                <h5>Preprocessing</h5>
+                <p>Load "standalone/cat_standalone_segment_enigma.m in SPM12 batch manager and select your files and run preprocessing.</p>
+
+                <h5>Smoothing of Volume Data</h5>
+                Use "Smooth" from the SPM12 GUI and select the warped segmentations in the "mri" folder:  "mwp1*" and "wp1*" for gray matter (modulated warped/warped) and "mwp2*" and "wp2*" for white matter (modulated warped/warped).<br/>
+                The recommended smoothing size for analyzing the data is 6mm. In order to use the data for machine learning with <a href="http://proniapredictors.eu/neurominer/index.html">NeuroMiner</a> no smoothing is necessary.<br/><br/>
+
+                <h5>Resample and Smooth Surface Data</h5>
+                Use "Smooth" from the SPM12 GUI and select the warped segmentations in the "mri" folder:  "mwp1*" and "wp1*" for gray matter (modulated warped/warped) and "mwp2*" and "wp2*" for white matter (modulated warped/warped).<br/>
+                The recommended smoothing size for analyzing the surface data is 12mm. In order to use the data for machine learning with <a href="http://proniapredictors.eu/neurominer/index.html">NeuroMiner</a> no smoothing is necessary and a the filter size should be set to "0".<br/><br/>
+
+                <h5>Estimate and Save Quality Measures for Volume and Surface Data</h5>
+                <p>Use "Data Quality-> Save quality parameters for external analysis" from the CAT12 GUI.</p>
+
+                <h5>Estimate total intra-cranial volume (TIV)</h5>
+                <p>Use "Get TIV" from the CAT12 GUI.</p>
+                
+                Optional (with graphical output):
+                <h5>Check Sample Homogeneity for Volume and Surface Data</h5>
+                <p>Use "Data Quality-> Check Data homogeneity" from the CAT12 GUI.</p>
+                
+                Optional (as an alternative to the ENIGMA Freesurfer protocol):
+                <h5>Estimate mean volumes and mean surface values inside ROI</h5>
+                <p>Use "ROI Tools-> Estimate Mean Value inside ROI for External Analysis" from the CAT12 GUI and select the catROI*xml files in the label folder.</p>
+                
+                Optional (for general use with other machine learning tools):
+                <h5>Save Volume or Surface Data as mat File</h5>
+                Use "Volume Tools-> Save (resampled) Volume Data as mat-File" from the CAT12 GUI and select smoothed gray/white matter segmentations (modulated normalized or affine registered DARTEL export).<br/>
+                Use "Surface Tools-> Save Volume Data as mat-File" from the CAT12 GUI and select resampled and smoothed surface data.<br/><br/>
+              </div>
+            </div>
+          </article>
+
+        <!-- Contact -->
+          <article id="Contact" class="panel secondary">
+            <div class="content">
+              <ul class="actions animated spinX">
+                <li><a href="#" class="button small back">Home</a></li>
+              </ul>
+              <div class="inner">
+                <header>
+                  <h2>Contact</h2>
+                </header>
+                <form method="post" action="#">
+                  <div class="fields">
+                    <div class="field half">
+                      <label for="name">Name</label>
+                      <input type="text" name="name" id="name" />
+                    </div>
+                    <div class="field half">
+                      <label for="email">Email</label>
+                      <input type="text" name="email" id="email" />
+                    </div>
+                    <div class="field">
+                      <label for="message">Message</label>
+                      <textarea name="message" id="message" rows="5"></textarea>
+                    </div>
+                  </div>
+                  <ul class="actions">
+                    <li><a href="" class="button submit">Send Message</a></li>
+                  </ul>
+                </form>
+              </div>
+            </div>
+          </article>
+
+        <!-- Footer -->
+          <footer id="footer">
+            <p class="copyright">&copy; Christian Gaser, Jena University Hospital</p>
+          </footer>
+
+      </div>
+
+    <!-- Scripts -->
+      <script src="assets/js/jquery.min.js"></script>
+      <script src="assets/js/browser.min.js"></script>
+      <script src="assets/js/breakpoints.min.js"></script>
+      <script src="assets/js/util.js"></script>
+      <script src="assets/js/main.js"></script>
+
+  </body>
+</html>
