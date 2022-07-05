@@ -1,4 +1,4 @@
-## Welcome to my Pages
+## Welcome to ENIGMA CAT12
 
 You can use the [editor on GitHub](https://github.com/neuro-jena/enigma-cat12/edit/main/README.md) to maintain and preview the content for your website in Markdown files.
 
