@@ -7,6 +7,9 @@
 		</head>
 		<body>
 			<nav>
+{% for page in site.pages %}
+    <a href={{ page.filename }}>{{ page.title }}</a>
+{% endfor %}
 	    		<ul>
 	        		<li><a href="/">Home</a></li>
 		        	<li><a href="/standalone">Standalone</a></li>
