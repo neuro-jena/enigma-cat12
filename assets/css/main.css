@@ -112,18 +112,18 @@ input, select, textarea {
 /* Type */
 
   body, input, select, textarea {
-    color: #222;
-    font-family: "Raleway", Helvetica, sans-serif;
-    font-size: 14pt;
+    font-family: 'Source Sans Pro', sans-serif;
     font-weight: 300;
-    line-height: 1.25;
-    letter-spacing: 0.05em;
+    color: #919499;
+    font-size: 12pt;
+    line-height: 1.5em;
+    letter-spacing: 0.025em;
   }
 
     @media screen and (max-width: 1680px) {
 
       body, input, select, textarea {
-        font-size: 11pt;
+        font-size: 10pt;
       }
 
     }
@@ -131,7 +131,7 @@ input, select, textarea {
     @media screen and (max-width: 360px) {
 
       body, input, select, textarea {
-        font-size: 10pt;
+        font-size: 9pt;
       }
 
     }
@@ -152,8 +152,8 @@ input, select, textarea {
     }
 
   strong, b {
-    color: #555;
-    font-weight: 500;
+    color: #484d55;
+    font-weight: 700;
   }
 
   red {
@@ -171,13 +171,9 @@ input, select, textarea {
 
   h1, h2, h3, h4, h5, h6 {
     color: #555;
-    font-family: "Montserrat", sans-serif;
     font-weight: 700;
     line-height: 1.5;
     margin: 0 0 1em 0;
-    /*
-    text-transform: uppercase;
-    */
   }
 
     h1 a, h2 a, h3 a, h4 a, h5 a, h6 a {
@@ -190,7 +186,7 @@ input, select, textarea {
   }
 
   h2 {
-    font-size: 1.75em;
+    font-size: 1.55em;
   }
 
   h3 {
@@ -309,6 +305,7 @@ input, select, textarea {
         height: 1px;
         margin: 1.5rem 0 1.75rem 0;
         width: 5rem;
+        width: 100%;
       }
 
         .special header > :first-child:after {
@@ -319,10 +316,6 @@ input, select, textarea {
     header p {
       font-size: 0.9em;
       margin-bottom: 0;
-/*      
-      text-transform: uppercase; 
-      letter-spacing: 0.25em;
-*/
     }
 
     @media screen and (max-width: 736px) {
@@ -511,88 +504,6 @@ input, select, textarea {
 
   textarea {
     padding: 0.75em 1em;
-  }
-
-  input[type="checkbox"],
-  input[type="radio"] {
-    -moz-appearance: none;
-    -webkit-appearance: none;
-    -ms-appearance: none;
-    appearance: none;
-    display: block;
-    float: left;
-    margin-right: -2em;
-    opacity: 0;
-    width: 1em;
-    z-index: -1;
-  }
-
-    input[type="checkbox"] + label,
-    input[type="radio"] + label {
-      text-decoration: none;
-      color: #444;
-      cursor: pointer;
-      display: inline-block;
-      font-size: 0.8em;
-      font-weight: 300;
-      margin: 0 0 0.5em 0;
-      padding-left: 2.9em;
-      padding-right: 0.75em;
-      position: relative;
-    }
-
-      input[type="checkbox"] + label:before,
-      input[type="radio"] + label:before {
-        -moz-osx-font-smoothing: grayscale;
-        -webkit-font-smoothing: antialiased;
-        display: inline-block;
-        font-style: normal;
-        font-variant: normal;
-        text-rendering: auto;
-        line-height: 1;
-        text-transform: none !important;
-        font-family: 'Font Awesome 5 Free';
-        font-weight: 900;
-      }
-
-      input[type="checkbox"] + label:before,
-      input[type="radio"] + label:before {
-        background: rgba(144, 144, 144, 0.075);
-        border-radius: 8px;
-        border: solid 1px #cccccc;
-        content: '';
-        display: inline-block;
-        height: 1.65em;
-        left: 0;
-        line-height: 1.58125em;
-        position: absolute;
-        text-align: center;
-        top: 0;
-        width: 1.65em;
-        font-size: 1em;
-        letter-spacing: 0;
-      }
-
-    input[type="checkbox"]:checked + label:before,
-    input[type="radio"]:checked + label:before {
-      background: #555;
-      border-color: #555;
-      color: #ffffff;
-      content: '\f00c';
-    }
-
-    input[type="checkbox"]:focus + label:before,
-    input[type="radio"]:focus + label:before {
-      border-color: #45d1a9;
-      box-shadow: 0 0 0 1px #45d1a9;
-    }
-
-  input[type="checkbox"] + label:before {
-    border-radius: 4px;
-  }
-
-  input[type="radio"] + label:before {
-    border-radius: 100%;
   }
 
   ::-webkit-input-placeholder {
@@ -915,7 +826,7 @@ input, select, textarea {
       }
 
         ul.icons li .icon:before {
-          font-size: 1.25rem;
+          font-size: 1.5rem;
         }
 
 /* Table */
@@ -1009,7 +920,7 @@ input, select, textarea {
     color: #555 !important;
     cursor: pointer;
     display: inline-block;
-    font-size: 0.8em;
+    font-size: 0.7em;
     font-weight: 500;
     height: 3.5em;
     letter-spacing: 0.25em;
