@@ -38,7 +38,7 @@
               <div class="inner">
                 <header>
                   <h2>Computational Anatomy Toolbox for Standardized Processing of ENIGMA Data</h2>
-                  <p>These protocols use <a href="https://neuro-jena.github.io/cat/">CAT12</a> to process voxel- and surface-based morphometry for MRI data in a standardized way for <a href="https://enigma.ini.usc.edu/">ENIGMA</a> data, but also enable region-based measures for volume and surface data. CAT12 includes various quality control options and covers the entire analysis workflow, from cross-sectional or longitudinal data processing, to the statistical analysis, and visualization of results. The current version is CAT12.8.1.</p><br/>
+                  <p>These protocols use <a href="https://neuro-jena.github.io/cat/">CAT12</a> to process voxel- and surface-based morphometry for MRI data in a standardized way for <a href="https://enigma.ini.usc.edu/">ENIGMA</a> data, but also enable region-based measures for volume and surface data. CAT12 includes various quality control options and covers the entire analysis workflow, from cross-sectional or longitudinal data processing, to the statistical analysis, and visualization of results. The current version is CAT12.8.2.</p><br/>
                   <p>You can either use the <a href="#standalone">standalone version</a> or the <a href="#standard">standard version</a> of CAT12. The advantage of the standalone version is that no Matlab license is needed. Only the (free) Matlab Runtime R2017b (v93) has to be downloaded.</p><br/>
                   <p>For any questions or suggestions please contact <a href="mailto:christian.gaser@uni-jena.de">me</a>.</p>
                   <p>Christian Gaser, Jena University Hospital</p>
@@ -77,7 +77,7 @@
 
                 <h4>Installation of the standalone version of CAT12</h4>
                 <ol>
-                  <li>Download the CAT12 standalone version for <a href="http://141.35.69.218/cat12/CAT12.8.1_r2040_R2017b_MCR_Mac.zip">macOS</a> or <a href="http://141.35.69.218/cat12/CAT12.8.1_r2040_R2017b_MCR_Linux.zip">Linux</a> (copy the link to your browser if the download does not start automatically or load the latest file for your system with the name cat12_latest_R2017b_MCR* <a href="http://141.35.69.218/cat12/">here</a>).</li>
+                  <li>Download the CAT12 standalone version for <a href="http://141.35.69.218/cat12/CAT12.8.2_r2040_R2017b_MCR_Mac.zip">macOS</a> or <a href="http://141.35.69.218/cat12/CAT12.8.2_r2040_R2017b_MCR_Linux.zip">Linux</a> (copy the link to your browser if the download does not start automatically or load the latest file for your system with the name cat12_latest_R2017b_MCR* <a href="http://141.35.69.218/cat12/">here</a>).</li>
                   <li>Open the MCR_v93.webloc link in the installed folder, which automatically downloads the Matlab Runtime for R2017b.</li>
                   <li>Install the Matlab Runtime with the "v93" folder preferably in the same folder.</li>
                 </ol>
@@ -85,17 +85,17 @@
                 <h4>Use of the standalone version of CAT12</h4>
                 If you prefer to use the standalone version of CAT12 via the GUI, you can call the GUI version with the following command:<br/><br/>
                 <pre><code>
-/software/CAT12.8.1_MCR/run_spm12.sh /software/CAT12.8.1_MCR/v93
+/software/CAT12.8.2_MCR/run_spm12.sh /software/CAT12.8.2_MCR/v93
                 </code></pre>
 
                 <p>In order to use the GUI version, please see the instructions for the <a href="#standard">standard version</a>.<br/><br/>
-                For the following examples, we assume that the CAT12 standalone version was installed in "/software/CAT12.8.1_MCR" and the Matlab Runtime in "/software/CAT12.8.1_MCR/v93" and your T1-data are located in "/data/enigma-data/raw" and are named "sub*.nii.gz".<br/>
+                For the following examples, we assume that the CAT12 standalone version was installed in "/software/CAT12.8.2_MCR" and the Matlab Runtime in "/software/CAT12.8.2_MCR/v93" and your T1-data are located in "/data/enigma-data/raw" and are named "sub*.nii.gz".<br/>
                 See the help text of standalone/cat_standalone.sh for more examples and a description of additional options.<br/></p>
 
                 <h5>DICOM Import</h5>
                 <pre><code>
-/software/CAT12.8.1_MCR/standalone/cat_standalone.sh -m /software/CAT12.8.1_MCR/v93 \
-  -b /software/CAT12.8.1_MCR/standalone/cat_standalone_dicom2nii.m /data/enigma-data/dicom/*.dcm \
+/software/CAT12.8.2_MCR/standalone/cat_standalone.sh -m /software/CAT12.8.2_MCR/v93 \
+  -b /software/CAT12.8.2_MCR/standalone/cat_standalone_dicom2nii.m /data/enigma-data/dicom/*.dcm \
   -a1 "'patid_date'" -a2 "{'raw'}"
                 </code></pre>
                 <p><i>Import DICOM files *.dcm and save converted nifti files in directory "raw" with structure
@@ -131,16 +131,16 @@
 
                 <h5>Preprocessing</h5>
                 <pre><code>
-/software/CAT12.8.1_MCR/standalone/cat_standalone.sh -m /software/CAT12.8.1_MCR/v93 \
-  -b /software/CAT12.8.1_MCR/standalone/cat_standalone_segment_enigma.m \
+/software/CAT12.8.2_MCR/standalone/cat_standalone.sh -m /software/CAT12.8.2_MCR/v93 \
+  -b /software/CAT12.8.2_MCR/standalone/cat_standalone_segment_enigma.m \
   /data/enigma-data/raw/sub*.nii.gz
                 </code></pre>
-                <p><i>Unzip and preprocess (segment) the files sub*.nii.gz using the ENIGMA CAT12 preprocessing batch. The preprocessed data is stored in a folder named after the CAT12 version (e.g. CAT12.8.1) and in separate subfolders (mri, surf, label and report) located in this folder. Data that contain non-brain areas (e.g. bias-corrected images in native space) are de-faced after preprocessing and saved with the prefix "anon_".</i></p>
+                <p><i>Unzip and preprocess (segment) the files sub*.nii.gz using the ENIGMA CAT12 preprocessing batch. The preprocessed data is stored in a folder named after the CAT12 version (e.g. CAT12.8.2) and in separate subfolders (mri, surf, label and report) located in this folder. Data that contain non-brain areas (e.g. bias-corrected images in native space) are de-faced after preprocessing and saved with the prefix "anon_".</i></p>
 
                 <h5>Preprocessing without surface estimation</h5>
                 <pre><code>
-/software/CAT12.8.1_MCR/standalone/cat_standalone.sh -m /software/CAT12.8.1_MCR/v93 \
-  -b /software/CAT12.8.1_MCR/standalone/cat_standalone_segment_enigma.m \
+/software/CAT12.8.2_MCR/standalone/cat_standalone.sh -m /software/CAT12.8.2_MCR/v93 \
+  -b /software/CAT12.8.2_MCR/standalone/cat_standalone_segment_enigma.m \
   -a "matlabbatch{1}.spm.tools.cat.estwrite.output.surface = 0;" /data/enigma-data/raw/sub*.nii.gz
                 </code></pre>
                 <p><i>Same as above, but skip surface extraction.</i></p>
@@ -148,9 +148,9 @@
                 <h5>Smoothing of Volume Data</h5>
                 <p>This step is optional if you intend to statistically analyze your VBM data.</p>
                 <pre><code>
-/software/CAT12.8.1_MCR/standalone/cat_standalone.sh -m /software/CAT12.8.1_MCR/v93 \
-  -b /software/CAT12.8.1_MCR/standalone/cat_standalone_smooth.m \
-  /data/enigma-data/raw/CAT12.8.1/mri/mwp1sub*.nii -a1 "[6 6 6]" -a2 "'s6'"
+/software/CAT12.8.2_MCR/standalone/cat_standalone.sh -m /software/CAT12.8.2_MCR/v93 \
+  -b /software/CAT12.8.2_MCR/standalone/cat_standalone_smooth.m \
+  /data/enigma-data/raw/CAT12.8.2/mri/mwp1sub*.nii -a1 "[6 6 6]" -a2 "'s6'"
                 </code></pre>
                 <p><i>Smooth the modulated and warped segmentations for gray matter with 6mm and prepend the string "s6" to the smoothed files. Optionally also smooth the white matter segmentations (i.e. mwp2*) and the warped segmentations without modulation (i.e. wp1* and wp2*) and also consider different smoothing sizes.</i></p>
                 The recommended smoothing size for analyzing the volume data is 6mm. In order to use the data for machine learning with <a href="http://proniapredictors.eu/neurominer/index.html">NeuroMiner</a> no smoothing is necessary.<br/>
@@ -158,27 +158,27 @@
 
                 <h5>Resample and Smooth Surface Data</h5>
                 <pre><code>
-/software/CAT12.8.1_MCR/standalone/cat_standalone.sh -m /software/CAT12.8.1_MCR/v93 \
-  -b /software/CAT12.8.1_MCR/standalone/cat_standalone_resample.m \
-  /data/enigma-data/raw/CAT12.8.1/surf/lh.thickness.sub* -a1 "12" -a2 "1"
+/software/CAT12.8.2_MCR/standalone/cat_standalone.sh -m /software/CAT12.8.2_MCR/v93 \
+  -b /software/CAT12.8.2_MCR/standalone/cat_standalone_resample.m \
+  /data/enigma-data/raw/CAT12.8.2/surf/lh.thickness.sub* -a1 "12" -a2 "1"
                 </code></pre>
                 <p><i>Resample and smooth the thickness files lh.thickness.sub* with 12mm and save the resampled meshes as 32k mesh (HCP conform meshes). Only the left surface file has to be defined. The right hemisphere is processed automatically.</i></p>
                 The recommended smoothing size for analyzing the surface data is 12mm. In order to use the data for machine learning with <a href="http://proniapredictors.eu/neurominer/index.html">NeuroMiner</a> no smoothing is necessary and a the filter size should be set to "0".<br/><br/>
 
                 <h5>Estimate and Save Quality Measures for Volume Data</h5>
                 <pre><code>
-/software/CAT12.8.1_MCR/standalone/cat_standalone.sh -m /software/CAT12.8.1_MCR/v93 \
-  -b /software/CAT12.8.1_MCR/standalone/cat_standalone_get_quality.m \
-  /data/enigma-data/raw/CAT12.8.1/mri/mwp1sub*.nii  -a1 "'Quality_measures_volumes.csv'" -a2 "1"
+/software/CAT12.8.2_MCR/standalone/cat_standalone.sh -m /software/CAT12.8.2_MCR/v93 \
+  -b /software/CAT12.8.2_MCR/standalone/cat_standalone_get_quality.m \
+  /data/enigma-data/raw/CAT12.8.2/mri/mwp1sub*.nii  -a1 "'Quality_measures_volumes.csv'" -a2 "1"
                 </code></pre>
                 <p><i>Estimate sample homogeneity (after preprocessing) using mean z-scores with global scaling with TIV for the modulated and warped segmentations for gray matter and save quality measures in the file Quality_measures_volumes.csv for external analysis.</i></p>
                 Please note the multiple quotes for parameter a1.<br/><br/>
 
                 <h5>Estimate and Save Quality Measures for Surface Data</h5>
                 <pre><code>
-/software/CAT12.8.1_MCR/standalone/cat_standalone.sh -m /software/CAT12.8.1_MCR/v93 \
-  -b /software/CAT12.8.1_MCR/standalone/cat_standalone_get_quality.m \
-  /data/enigma-data/raw/CAT12.8.1/surf/s12.mesh.thickness.resampled_32k.sub* \
+/software/CAT12.8.2_MCR/standalone/cat_standalone.sh -m /software/CAT12.8.2_MCR/v93 \
+  -b /software/CAT12.8.2_MCR/standalone/cat_standalone_get_quality.m \
+  /data/enigma-data/raw/CAT12.8.2/surf/s12.mesh.thickness.resampled_32k.sub* \
   -a1 "'Quality_measures_surfaces.csv'"
                 </code></pre>
                 <p><i>Estimate sample homogeneity (after preprocessing) using mean z-scores for resampled and smoothed thickness values and save quality measures in Quality_mesures_surfaces.csv for external analysis.</i></p>
@@ -186,9 +186,9 @@
 
                 <h5>Estimate and Save Weighted Overall Image Quality</h5>
                 <pre><code>
-/software/CAT12.8.1_MCR/standalone/cat_standalone.sh -m /software/CAT12.8.1_MCR/v93 \
-  -b /software/CAT12.8.1_MCR/standalone/cat_standalone_get_IQR.m \
-  /data/enigma-data/raw/CAT12.8.1/report/cat_*.xml \
+/software/CAT12.8.2_MCR/standalone/cat_standalone.sh -m /software/CAT12.8.2_MCR/v93 \
+  -b /software/CAT12.8.2_MCR/standalone/cat_standalone_get_IQR.m \
+  /data/enigma-data/raw/CAT12.8.2/report/cat_*.xml \
   -a1 "'IQR.txt'"
                 </code></pre>
                 <p><i>Estimate weighted overall image quality (before preprocessing) using xml-files in report folder and save quality measures in IQR.txt for external analysis.</i></p>
@@ -196,9 +196,9 @@
 
                 <h5>Estimate Total Intra-cranial Volume (TIV)</h5>
                 <pre><code>
-/software/CAT12.8.1_MCR/standalone/cat_standalone.sh -m /software/CAT12.8.1_MCR/v93 \
-  -b /software/CAT12.8.1_MCR/standalone/cat_standalone_get_TIV.m \
-  /data/enigma-data/raw/CAT12.8.1/report/cat_*.xml  -a1 "'TIV.txt'" -a2 "1" -a3 "0".
+/software/CAT12.8.2_MCR/standalone/cat_standalone.sh -m /software/CAT12.8.2_MCR/v93 \
+  -b /software/CAT12.8.2_MCR/standalone/cat_standalone_get_TIV.m \
+  /data/enigma-data/raw/CAT12.8.2/report/cat_*.xml  -a1 "'TIV.txt'" -a2 "1" -a3 "0".
                 </code></pre>
                 <p><i>Save TIV values for all selected data in TIV.txt. Please note the multiple quotes to define the output name with a1.<br/>
                 The parameter a2 allows you to save only the TIV (1) or additionally to save also the global volumes for GM, WM, CSF, and WM hyperintensities (0). With parameter a3 you can add file names to the 1st column: 0 - save values only; 1 - add file name; 2 - add folder and file names.</i></p>
@@ -208,9 +208,9 @@
                 <h5>Estimate mean volumes and mean surface values inside ROI</h5>
                 <p>This step is optional (as an alternative to the ENIGMA Freesurfer protocol).</p>
                 <pre><code>
-/software/CAT12.8.1_MCR/standalone/cat_standalone.sh -m /software/CAT12.8.1_MCR/v93 \
-  -b /software/CAT12.8.1_MCR/standalone/cat_standalone_get_ROI_values.m \
-  /data/enigma-data/raw/CAT12.8.1/label/catROI*.xml  -a1 "'ROI'"
+/software/CAT12.8.2_MCR/standalone/cat_standalone.sh -m /software/CAT12.8.2_MCR/v93 \
+  -b /software/CAT12.8.2_MCR/standalone/cat_standalone_get_ROI_values.m \
+  /data/enigma-data/raw/CAT12.8.2/label/catROI*.xml  -a1 "'ROI'"
                 </code></pre>
                 <p><i>Save mean surface values (e.g. cortical thickness) and mean volumes (in ml) for all selected data in a csv-file. The csv-file is named "ROI_" followed by the atlas name and the name of the measure (e.g. thickness or Vgm).</i></p>
                 Please note the multiple quotes to define the ROI name.<br/><br/>
@@ -218,9 +218,9 @@
                 <h4>Parallelization of the standalone version</h4>
                 <p>In contrast to the Matlab standard version of CAT12, the standalone version only supports serial preprocessing of multiple files. In order to speed up preprocessing and to distribute your jobs or batches to several processors or cores, you can use the script standalone/cat_parallize.sh:</p>
                 <pre><code>
-/software/CAT12.8.1_MCR/standalone/cat_parallelize.sh -p 8 -l /tmp \
-  -c "-m /software/CAT12.8.1_MCR/v93 \
-  -b /software/CAT12.8.1_MCR/standalone/cat_standalone_segment_enigma.m" \ 
+/software/CAT12.8.2_MCR/standalone/cat_parallelize.sh -p 8 -l /tmp \
+  -c "-m /software/CAT12.8.2_MCR/v93 \
+  -b /software/CAT12.8.2_MCR/standalone/cat_standalone_segment_enigma.m" \ 
   /data/enigma-data/raw/sub*.nii
                 </code></pre>
                 <p><i>Parallelize CAT12 ENIGMA preprocessing by splitting all sub*.nii files into 8 jobs  (processes) and save log file in /tmp folder.
