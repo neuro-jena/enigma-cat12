@@ -77,24 +77,24 @@
 
                 <h4>Installation of the standalone version of CAT12</h4>
                 <ol>
-                  <li>Download the CAT12 standalone version for <!-- <a href="https://www.neuro.uni-jena.de/cat12/CAT12.9_R2023b_MCR_Mac_arm64.zip">MacOS (ARM64, Silicon)</a>,--> <a href="https://www.neuro.uni-jena.de/cat12/CAT12.9_R2023b_MCR_Mac.zip">MacOS (Intel)</a> or <a href="https://www.neuro.uni-jena.de/cat12/CAT12.9_R2017b_MCR_Linux.zip">Linux</a> (copy the link to your browser if the download does not start automatically or load the latest file for your system with the name cat12_latest_R2017b_MCR* for Linux or cat12_latest_R2023b_MCR* for MacOS <a href="https://www.neuro.uni-jena.de/cat12/">here</a>). Please contact <a href="mailto:christian.gaser@uni-jena.de">me</a> if you need versions for Windows.</li>
-                  <li>Open the MCR_v93.webloc (for Linux) or the MCR_v232.webloc (for MacOS) link in the installed folder, which automatically downloads the Matlab Runtime for R2017b or R2023b.</li>
-                  <li>Install the Matlab Runtime with the "v93" or "v232" folder preferably in the same folder.</li>
+                  <li>Download the CAT12 standalone version for <!-- <a href="https://www.neuro.uni-jena.de/cat12/CAT12.9_R2023b_MCR_Mac_arm64.zip">MacOS (ARM64, Silicon)</a>,--> <a href="https://www.neuro.uni-jena.de/cat12/CAT12.9_R2023b_MCR_Mac.zip">MacOS (Intel)</a> or <a href="https://www.neuro.uni-jena.de/cat12/CAT12.9_R2023b_MCR_Linux.zip">Linux</a> (copy the link to your browser if the download does not start automatically or load the latest file for your system with the name cat12_latest_R2023b_MCR* <a href="https://www.neuro.uni-jena.de/cat12/">here</a>). Please contact <a href="mailto:christian.gaser@uni-jena.de">me</a> if you need versions for Windows.</li>
+                  <li>Open the MCR_v232.webloc link in the installed folder, which automatically downloads the Matlab Runtime for R2023b.</li>
+                  <li>Install the Matlab Runtime with the "v232" folder preferably in the same folder.</li>
                 </ol>
 
                 <h4>Use of the standalone version of CAT12</h4>
                 If you prefer to use the standalone version of CAT12 via the GUI, you can call the GUI version with the following command:<br/><br/>
                 <pre><code>
-/software/CAT12.9_MCR/run_spm12.sh /software/CAT12.9_MCR/v93
+/software/CAT12.9_MCR/run_spm12.sh /software/CAT12.9_MCR/v232
                 </code></pre>
 
                 <p>In order to use the GUI version, please see the instructions for the <a href="#standard">standard version</a>.<br/><br/>
-                For the following examples, we assume that the CAT12 standalone version was installed in "/software/CAT12.9_MCR" and the Matlab Runtime in "/software/CAT12.9_MCR/v93" and your T1-data are located in "/data/enigma-data/raw" and are named "sub*.nii.gz".<br/>
+                For the following examples, we assume that the CAT12 standalone version was installed in "/software/CAT12.9_MCR" and the Matlab Runtime in "/software/CAT12.9_MCR/v232" and your T1-data are located in "/data/enigma-data/raw" and are named "sub*.nii.gz".<br/>
                 See the help text of standalone/cat_standalone.sh for more examples and a description of additional options.<br/></p>
 
                 <h5>DICOM Import</h5>
                 <pre><code>
-/software/CAT12.9_MCR/standalone/cat_standalone.sh -m /software/CAT12.9_MCR/v93 \
+/software/CAT12.9_MCR/standalone/cat_standalone.sh -m /software/CAT12.9_MCR/v232 \
   -b /software/CAT12.9_MCR/standalone/cat_standalone_dicom2nii.m /data/enigma-data/dicom/*.dcm \
   -a1 "'patid_date'" -a2 "{'raw'}"
                 </code></pre>
@@ -131,7 +131,7 @@
 
                 <h5>Preprocessing</h5>
                 <pre><code>
-/software/CAT12.9_MCR/standalone/cat_standalone.sh -m /software/CAT12.9_MCR/v93 \
+/software/CAT12.9_MCR/standalone/cat_standalone.sh -m /software/CAT12.9_MCR/v232 \
   -b /software/CAT12.9_MCR/standalone/cat_standalone_segment_enigma.m \
   /data/enigma-data/raw/sub*.nii.gz
                 </code></pre>
@@ -139,7 +139,7 @@
 
                 <h5>Preprocessing without surface estimation</h5>
                 <pre><code>
-/software/CAT12.9_MCR/standalone/cat_standalone.sh -m /software/CAT12.9_MCR/v93 \
+/software/CAT12.9_MCR/standalone/cat_standalone.sh -m /software/CAT12.9_MCR/v232 \
   -b /software/CAT12.9_MCR/standalone/cat_standalone_segment_enigma.m \
   -a "matlabbatch{1}.spm.tools.cat.estwrite.output.surface = 0;" /data/enigma-data/raw/sub*.nii.gz
                 </code></pre>
@@ -148,7 +148,7 @@
                 <h5>Smoothing of Volume Data</h5>
                 <p>This step is optional if you intend to statistically analyze your VBM data.</p>
                 <pre><code>
-/software/CAT12.9_MCR/standalone/cat_standalone.sh -m /software/CAT12.9_MCR/v93 \
+/software/CAT12.9_MCR/standalone/cat_standalone.sh -m /software/CAT12.9_MCR/v232 \
   -b /software/CAT12.9_MCR/standalone/cat_standalone_smooth.m \
   /data/enigma-data/raw/CAT12.9/mri/mwp1sub*.nii -a1 "[6 6 6]" -a2 "'s6'"
                 </code></pre>
@@ -158,7 +158,7 @@
 
                 <h5>Resample and Smooth Surface Data</h5>
                 <pre><code>
-/software/CAT12.9_MCR/standalone/cat_standalone.sh -m /software/CAT12.9_MCR/v93 \
+/software/CAT12.9_MCR/standalone/cat_standalone.sh -m /software/CAT12.9_MCR/v232 \
   -b /software/CAT12.9_MCR/standalone/cat_standalone_resample.m \
   /data/enigma-data/raw/CAT12.9/surf/lh.thickness.sub* -a1 "12" -a2 "1"
                 </code></pre>
@@ -167,7 +167,7 @@
 
                 <h5>Estimate and Save Quality Measures for Volume Data</h5>
                 <pre><code>
-/software/CAT12.9_MCR/standalone/cat_standalone.sh -m /software/CAT12.9_MCR/v93 \
+/software/CAT12.9_MCR/standalone/cat_standalone.sh -m /software/CAT12.9_MCR/v232 \
   -b /software/CAT12.9_MCR/standalone/cat_standalone_get_quality.m \
   /data/enigma-data/raw/CAT12.9/mri/mwp1sub*.nii  -a1 "'Quality_measures_volumes.csv'" -a2 "1"
                 </code></pre>
@@ -176,7 +176,7 @@
 
                 <h5>Estimate and Save Quality Measures for Surface Data</h5>
                 <pre><code>
-/software/CAT12.9_MCR/standalone/cat_standalone.sh -m /software/CAT12.9_MCR/v93 \
+/software/CAT12.9_MCR/standalone/cat_standalone.sh -m /software/CAT12.9_MCR/v232 \
   -b /software/CAT12.9_MCR/standalone/cat_standalone_get_quality.m \
   /data/enigma-data/raw/CAT12.9/surf/s12.mesh.thickness.resampled_32k.sub* \
   -a1 "'Quality_measures_surfaces.csv'"
@@ -186,7 +186,7 @@
 
                 <h5>Estimate and Save Weighted Overall Image Quality</h5>
                 <pre><code>
-/software/CAT12.9_MCR/standalone/cat_standalone.sh -m /software/CAT12.9_MCR/v93 \
+/software/CAT12.9_MCR/standalone/cat_standalone.sh -m /software/CAT12.9_MCR/v232 \
   -b /software/CAT12.9_MCR/standalone/cat_standalone_get_IQR.m \
   /data/enigma-data/raw/CAT12.9/report/cat_*.xml \
   -a1 "'IQR.txt'"
@@ -196,7 +196,7 @@
 
                 <h5>Estimate Total Intra-cranial Volume (TIV)</h5>
                 <pre><code>
-/software/CAT12.9_MCR/standalone/cat_standalone.sh -m /software/CAT12.9_MCR/v93 \
+/software/CAT12.9_MCR/standalone/cat_standalone.sh -m /software/CAT12.9_MCR/v232 \
   -b /software/CAT12.9_MCR/standalone/cat_standalone_get_TIV.m \
   /data/enigma-data/raw/CAT12.9/report/cat_*.xml  -a1 "'TIV.txt'" -a2 "1" -a3 "0".
                 </code></pre>
@@ -208,7 +208,7 @@
                 <h5>Estimate mean volumes and mean surface values inside ROI</h5>
                 <p>This step is optional (as an alternative to the ENIGMA Freesurfer protocol).</p>
                 <pre><code>
-/software/CAT12.9_MCR/standalone/cat_standalone.sh -m /software/CAT12.9_MCR/v93 \
+/software/CAT12.9_MCR/standalone/cat_standalone.sh -m /software/CAT12.9_MCR/v232 \
   -b /software/CAT12.9_MCR/standalone/cat_standalone_get_ROI_values.m \
   /data/enigma-data/raw/CAT12.9/label/catROI*.xml  -a1 "'ROI'"
                 </code></pre>
@@ -219,7 +219,7 @@
                 <p>In contrast to the Matlab standard version of CAT12, the standalone version only supports serial preprocessing of multiple files. In order to speed up preprocessing and to distribute your jobs or batches to several processors or cores, you can use the script standalone/cat_parallize.sh:</p>
                 <pre><code>
 /software/CAT12.9_MCR/standalone/cat_parallelize.sh -p 8 -l /tmp \
-  -c "-m /software/CAT12.9_MCR/v93 \
+  -c "-m /software/CAT12.9_MCR/v232 \
   -b /software/CAT12.9_MCR/standalone/cat_standalone_segment_enigma.m" \ 
   /data/enigma-data/raw/sub*.nii
                 </code></pre>
