@@ -303,6 +303,30 @@ your_spm12_folder/toolbox/cat12/standalone/cat_standalone.sh -ns -e -m /usr/loca
                 <h5>Save Volume or Surface Data as mat File</h5>
                 Use "Volume Tools -> Save (resampled) Volume Data as mat-File" from the CAT12 GUI and select smoothed gray/white matter segmentations (modulated normalized or affine registered DARTEL export).<br/>
                 Use "Surface Tools -> Save Volume Data as mat-File" from the CAT12 GUI and select resampled and smoothed surface data.<br/><br/>
+
+                <h4>Parallelization of the standard version</h4>
+                <p>In order to speed up preprocessing and to distribute your jobs or batches to several processors or cores, there are two different options:</p>
+                <ol>
+                  <li>You can use the script standalone/cat_parallize.sh. However, you also need to use the flag "-fg" with cat_standalone.sh to prevent that the internal parallelization from being used:</li>
+                <pre><code>
+/software/CAT12.9_MCR/standalone/cat_parallelize.sh -p 8 -l /tmp \
+  -c "your_spm12_folder/toolbox/cat12/standalone/cat_standalone.sh -fg -ns -e -m /usr/local/bin/matlab \
+  -b /software/CAT12.9_MCR/standalone/cat_standalone_segment_enigma.m" \ 
+  /data/enigma-data/raw/sub*.nii
+                </code></pre>
+                <p><i>Parallelize CAT12 ENIGMA preprocessing by splitting all sub*.nii files into 8 jobs (processes) and save the log file into the /tmp folder.
+                </i></p>
+                  <li>Call cat_standalone and the parallelization will be handled automatically. You can adjust the number of processors in cat_defaults (e.g. "cat.extopts.nproc = 4;"):</li>
+                <pre><code>
+your_spm12_folder/toolbox/cat12/standalone/cat_standalone.sh -ns -e -m /usr/local/bin/matlab \
+  -b your_spm12_folder/toolbox/cat12/standalone/cat_standalone_segment_enigma.m \
+  -s your_spm12_folder /data/enigma-data/raw/sub*.nii.gz
+                </code></pre>
+                <p><i>Parallelize CAT12 ENIGMA preprocessing by splitting all sub*.nii files into number of available or defined jobs (processes) and save the log file into the /tmp folder.
+                </i></p>
+                </ol>
+
+
               </div>
             </div>
           </article>
