@@ -1,0 +1,375 @@
+<!DOCTYPE HTML>
+<!--
+  Indivisible by Pixelarity
+  pixelarity.com | hello@pixelarity.com
+  License: pixelarity.com/license
+-->
+<html>
+  <head>
+    <title>ENIGMA CAT26</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+    <meta name="keywords" content="enigma, computational, anatomy, toolbox, voxel-based morphometry, deformation-based morphometry, surface-based morphometry, VBM, DBM, SBM, morphometry, volumetry, brain, surface, volume, label, SPM, cat, cat12, cat26">
+    <link rel="stylesheet" href="assets/css/main.css" />
+    <noscript><link rel="stylesheet" href="assets/css/noscript.css" /></noscript>
+
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-D8P3F4X82M"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+
+      gtag('config', 'G-D8P3F4X82M');
+    </script>
+
+  </head>
+  <body class="is-preload-0 is-preload-1">
+
+    <!-- Wrapper -->
+      <div id="wrapper">
+
+        <!-- Home -->
+          <article id="home" class="panel special">
+            <div class="image">
+              <img src="images/pic01.jpg" alt="" data-position="center center" />
+            </div>
+            <div class="content">
+              <div class="inner">
+                <header>
+                  <h2>Computational Anatomy Toolbox for Standardized Processing of ENIGMA Data</h2>
+                  <p>These protocols use <a href="https://neuro-jena.github.io/cat/">CAT</a> to process voxel- and surface-based morphometry for MRI data in a standardized way for <a href="https://enigma.ini.usc.edu/">ENIGMA</a> data, but also enable region-based measures for volume and surface data. CAT includes various quality control options and covers the entire analysis workflow, from cross-sectional or longitudinal data processing, to the statistical analysis, and visualization of results. This page describes CAT26.0.</p><br/>
+
+                  <div class="box" style="text-align: left;">
+                    <p><b>Which CAT version should I use?</b></p>
+                    <p>The ENIGMA protocols are changed only rarely, because all sites of a project have to process their data with the same pipeline. Results of different CAT versions (e.g. cortical thickness) are not directly comparable, so please never change the version within a running project.</p>
+                    <ul style="font-size: 0.9em;">
+                      <li><b>Ongoing projects:</b> please continue with <a href="index.html">CAT12.9</a>.</li>
+                      <li><b>New projects:</b> if all ENIGMA partners start processing at the same time, CAT26 is a good option. Please agree on the version with all partners before processing starts.</li>
+                    </ul>
+                    <p>Main changes compared to CAT12.9 (see the <a href="https://github.com/ChristianGaser/cat12/releases/tag/26.0">release notes</a> for details):</p>
+                    <ul style="font-size: 0.9em;">
+                      <li>Revised surface extraction with faster and more robust estimation of cortical thickness</li>
+                      <li>More robust preprocessing of challenging data (e.g. MP2RAGE) and updated image quality assessment</li>
+                      <li>JulichBrain atlas updated to version 3.1</li>
+                      <li>Standalone versions for Linux, MacOS (Intel and Apple Silicon) and Windows</li>
+                    </ul>
+                    <ul class="actions" style="text-align: center;">
+                      <li><a href="index.html" class="button small">CAT12.9 (ongoing projects)</a></li>
+                      <li><a href="index_CAT26.html" class="button primary small">CAT26 (new projects)</a></li>
+                      <li><a href="index_CAT128.html" class="button small">CAT12.8.2</a></li>
+                    </ul>
+                  </div>
+
+                  <p>You can either use the <a href="#standalone">standalone version</a> or the <a href="#standard">standard version</a> of CAT. The advantage of the standalone version is that no Matlab license is needed. Only the (free) Matlab Runtime has to be downloaded.</p><br/>
+                  <p>For any questions or suggestions please contact <a href="mailto:christian.gaser@uni-jena.de">me</a>.</p>
+                  <p>Christian Gaser, Jena University Hospital</p>
+                </header>
+                <nav id="nav">
+                  <ul class="actions stacked special animated spinY">
+                    <li><a href="#standalone" class="button">Standalone Version</a></li>
+                    <li><a href="#standard" class="button">Standard Version</a></li>
+                    <li><a href="mailto:christian.gaser@uni-jena.de" class="button">Contact</a></li>
+                  </ul>
+                </nav>
+                <ul class="icons">
+                  <li><a href="https://twitter.com/CAT12Toolbox" class="icon brands fa-twitter"><span class="label">Twitter</span></a></li>
+                  <li><a href="https://github.com/ChristianGaser" class="icon brands fa-github"><span class="label">GitHub</span></a></li>
+                  <li><a href="mailto:christian.gaser@uni-jena.de" class="icon solid fa-envelope"><span class="label">Email</span></a></li>
+                </ul>
+              </div>
+            </div>
+          </article>
+
+        <!-- Standalone -->
+          <article id="standalone" class="panel secondary">
+            <div class="content">
+              <ul class="actions animated spinX">
+                <li><a href="#" class="button small back">Home</a></li>
+              </ul>
+              <div class="inner">
+                <header>
+                  <h2>Standalone Version of CAT26</h2>
+                </header>
+
+                <h3>Use of the standalone version of CAT26</h3>
+
+                <p>The advantage of the standalone version is that no Matlab license is required. Only the (free) Matlab Runtime has to be downloaded. However, there are some limitations (e.g. no parallelization and no interactive help in the GUI version) and the standalone version is mainly intended to run without GUI on Unix systems.</p>
+
+                <h4>Installation of the standalone version of CAT26</h4>
+                <ol>
+                  <li>Download the CAT26.0 standalone version for <a href="https://github.com/ChristianGaser/cat12/releases/download/26.0/CAT_R2023b_MCR_Mac_arm64.zip">MacOS (ARM64, Silicon)</a>, <a href="https://github.com/ChristianGaser/cat12/releases/download/26.0/CAT_R2023b_MCR_Mac.zip">MacOS (Intel)</a>, <a href="https://github.com/ChristianGaser/cat12/releases/download/26.0/CAT_R2023b_MCR_Linux.zip">Linux</a> or <a href="https://github.com/ChristianGaser/cat12/releases/download/26.0/CAT_R2023b_MCR_Win.zip">Windows</a>.</li>
+                  <li>Unzip the file. This creates the folder "cat_standalone", which you can rename and move to your preferred location (e.g. "/software/CAT26.0_MCR").</li>
+                  <li>Download the Matlab Runtime R2023b for <a href="https://ssd.mathworks.com/supportfiles/downloads/R2023b/Release/10/deployment_files/installer/complete/maca64/MATLAB_Runtime_R2023b_Update_10_maca64.dmg">MacOS (ARM64, Silicon)</a>, <a href="https://ssd.mathworks.com/supportfiles/downloads/R2023b/Release/10/deployment_files/installer/complete/maci64/MATLAB_Runtime_R2023b_Update_10_maci64.dmg.zip">MacOS (Intel)</a>, <a href="https://ssd.mathworks.com/supportfiles/downloads/R2023b/Release/10/deployment_files/installer/complete/glnxa64/MATLAB_Runtime_R2023b_Update_10_glnxa64.zip">Linux</a> or <a href="https://ssd.mathworks.com/supportfiles/downloads/R2023b/Release/10/deployment_files/installer/complete/win64/MATLAB_Runtime_R2023b_Update_10_win64.zip">Windows</a> and install it preferably in the same folder. The installer creates the subfolder "R2023b". On Linux, you can also install it without GUI:
+                <pre><code>
+unzip MATLAB_Runtime_R2023b_Update_10_glnxa64.zip -d mcr_installer
+sudo mcr_installer/install -agreeToLicense yes -destinationFolder /software/CAT26.0_MCR
+                </code></pre></li>
+                </ol>
+
+                <h4>Use of the standalone version of CAT26</h4>
+                If you prefer to use the standalone version of CAT via the GUI, you can call the GUI version with the following command:<br/><br/>
+                <pre><code>
+/software/CAT26.0_MCR/run_spm.sh /software/CAT26.0_MCR/R2023b
+                </code></pre>
+                <p>Please note that the start script is now always named "run_spm.sh" (instead of "run_spm25.sh" in CAT12.9). On Windows, start the GUI version with "spm.exe". The shell scripts in the following examples require Linux or MacOS.<br/><br/>
+                In order to use the GUI version, please see the instructions for the <a href="#standard">standard version</a>.<br/><br/>
+                For the following examples, we assume that the CAT standalone version was installed in "/software/CAT26.0_MCR" and the Matlab Runtime in "/software/CAT26.0_MCR/R2023b" and your T1-data are located in "/data/enigma-data/raw" and are named "sub*.nii.gz".<br/>
+                See the help text of standalone/cat_standalone.sh for more examples and a description of additional options.<br/></p>
+
+                <h5>DICOM Import</h5>
+                <pre><code>
+/software/CAT26.0_MCR/standalone/cat_standalone.sh -m /software/CAT26.0_MCR/R2023b \
+  -b /software/CAT26.0_MCR/standalone/cat_standalone_dicom2nii.m /data/enigma-data/dicom/*.dcm \
+  -a1 "'patid_date'" -a2 "{'raw'}"
+                </code></pre>
+                <p><i>Import DICOM files *.dcm and save converted nifti files in directory "raw" with structure
+                &lt;PatientID&gt;/&lt;StudyDate-StudyTime>/&lt;ProtocollName&gt;</i><br/><br/>
+                Other options for directory structure are:
+                <div class="table-wrapper">
+                  <table>
+                    <tbody>
+                      <tr>
+                        <td>flat</td>
+                        <td>No directory hierarchy</td>
+                      </tr>
+                      <tr>
+                        <td>series</td>
+                        <td>&lt;ProtocollName&gt;</td>
+                      </tr>
+                      <tr>
+                        <td>patid_date</td>
+                        <td>&lt;PatientID&gt;/&lt;StudyDate-StudyTime>/&lt;ProtocollName&gt;</td>
+                      </tr>
+                      <tr>
+                        <td>patid</td>
+                        <td>&lt;PatientID&gt;/&lt;ProtocollName&gt;</td>
+                      </tr>
+                      <tr>
+                        <td>date_time</td>
+                        <td>&lt;StudyDate-StudyTime>/&lt;ProtocollName&gt;</td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+                <p>Please note the multiple quotes for parameter a1.</p>
+
+                <h5>Preprocessing</h5>
+                <pre><code>
+/software/CAT26.0_MCR/standalone/cat_standalone.sh -m /software/CAT26.0_MCR/R2023b \
+  -b /software/CAT26.0_MCR/standalone/cat_standalone_segment_enigma.m \
+  /data/enigma-data/raw/sub*.nii.gz
+                </code></pre>
+                <p><i>Unzip and preprocess (segment) the files sub*.nii.gz using the ENIGMA CAT preprocessing batch. The preprocessed data is stored in a folder named after the CAT version (i.e. CAT26.0) and in separate subfolders (mri, surf, label and report) located in this folder. Data that contain non-brain areas (e.g. bias-corrected images in native space) are de-faced after preprocessing and saved with the prefix "anon_".</i></p>
+                <p>If your data are organized in BIDS format, the folder CAT26.0 is created in the BIDS root folder and the results are saved in CAT26.0/sub-*/[ses-*/]anat. In this case, please adapt the paths in the following examples.</p>
+
+                <h5>Preprocessing without surface estimation</h5>
+                <pre><code>
+/software/CAT26.0_MCR/standalone/cat_standalone.sh -m /software/CAT26.0_MCR/R2023b \
+  -b /software/CAT26.0_MCR/standalone/cat_standalone_segment_enigma.m \
+  -a "matlabbatch{1}.spm.tools.cat.estwrite.output.surface = 0;" /data/enigma-data/raw/sub*.nii.gz
+                </code></pre>
+                <p><i>Same as above, but skip surface extraction.</i></p>
+
+                <h5>Smoothing of Volume Data</h5>
+                <p>This step is optional if you intend to statistically analyze your VBM data.</p>
+                <pre><code>
+/software/CAT26.0_MCR/standalone/cat_standalone.sh -m /software/CAT26.0_MCR/R2023b \
+  -b /software/CAT26.0_MCR/standalone/cat_standalone_smooth.m \
+  /data/enigma-data/raw/CAT26.0/mri/mwp1sub*.nii -a1 "[6 6 6]" -a2 "'s6'"
+                </code></pre>
+                <p><i>Smooth the modulated and warped segmentations for gray matter with 6mm and prepend the string "s6" to the smoothed files. Optionally also smooth the white matter segmentations (i.e. mwp2*) and the warped segmentations without modulation (i.e. wp1* and wp2*) and also consider different smoothing sizes.</i></p>
+                The recommended smoothing size for analyzing the volume data is 6mm. In order to use the data for machine learning with <a href="http://proniapredictors.eu/neurominer/index.html">NeuroMiner</a> no smoothing is necessary.<br/>
+                Please note the multiple quotes for parameter a2.<br/><br/>
+
+                <h5>Resample and Smooth Surface Data</h5>
+                <pre><code>
+/software/CAT26.0_MCR/standalone/cat_standalone.sh -m /software/CAT26.0_MCR/R2023b \
+  -b /software/CAT26.0_MCR/standalone/cat_standalone_resample.m \
+  /data/enigma-data/raw/CAT26.0/surf/lh.thickness.sub* -a1 "12" -a2 "1"
+                </code></pre>
+                <p><i>Resample and smooth the thickness files lh.thickness.sub* with 12mm and save the resampled meshes as 32k mesh (HCP conform meshes). Only the left surface file has to be defined. The right hemisphere is processed automatically.</i></p>
+                The recommended smoothing size for analyzing the surface data is 12mm. In order to use the data for machine learning with <a href="http://proniapredictors.eu/neurominer/index.html">NeuroMiner</a> no smoothing is necessary and the filter size should be set to "0".<br/><br/>
+
+                <h5>Estimate and Save Quality Measures for Volume Data</h5>
+                <pre><code>
+/software/CAT26.0_MCR/standalone/cat_standalone.sh -m /software/CAT26.0_MCR/R2023b \
+  -b /software/CAT26.0_MCR/standalone/cat_standalone_get_quality.m \
+  /data/enigma-data/raw/CAT26.0/mri/mwp1sub*.nii -a1 "'Quality_measures_volumes.csv'" -a2 "1"
+                </code></pre>
+                <p><i>Estimate sample homogeneity (after preprocessing) using mean z-scores with global scaling with TIV for the modulated and warped segmentations for gray matter and save quality measures in the file Quality_measures_volumes.csv for external analysis.</i></p>
+                Please note the multiple quotes for parameter a1.<br/><br/>
+
+                <h5>Estimate and Save Quality Measures for Surface Data</h5>
+                <pre><code>
+/software/CAT26.0_MCR/standalone/cat_standalone.sh -m /software/CAT26.0_MCR/R2023b \
+  -b /software/CAT26.0_MCR/standalone/cat_standalone_get_quality.m \
+  /data/enigma-data/raw/CAT26.0/surf/s12.mesh.thickness.resampled_32k.sub* \
+  -a1 "'Quality_measures_surfaces.csv'"
+                </code></pre>
+                <p><i>Estimate sample homogeneity (after preprocessing) using mean z-scores for resampled and smoothed thickness values and save quality measures in Quality_measures_surfaces.csv for external analysis.</i></p>
+                Please note the multiple quotes for parameter a1.<br/><br/>
+
+                <h5>Estimate and Save Weighted Overall Image Quality</h5>
+                <pre><code>
+/software/CAT26.0_MCR/standalone/cat_standalone.sh -m /software/CAT26.0_MCR/R2023b \
+  -b /software/CAT26.0_MCR/standalone/cat_standalone_get_IQR.m \
+  /data/enigma-data/raw/CAT26.0/report/cat_*.xml \
+  -a1 "'SIQR.txt'"
+                </code></pre>
+                <p><i>Estimate weighted overall image quality (before preprocessing) using xml-files in report folder and save the structural image quality ratings (SIQR) in SIQR.txt for external analysis. Please note that SIQR replaces the former IQR of CAT12.9 and both measures are not directly comparable.</i></p>
+                Please note the multiple quotes for parameter a1.<br/><br/>
+
+                <h5>Estimate Total Intra-cranial Volume (TIV)</h5>
+                <pre><code>
+/software/CAT26.0_MCR/standalone/cat_standalone.sh -m /software/CAT26.0_MCR/R2023b \
+  -b /software/CAT26.0_MCR/standalone/cat_standalone_get_TIV.m \
+  /data/enigma-data/raw/CAT26.0/report/cat_*.xml -a1 "'TIV.txt'" -a2 "1" -a3 "0"
+                </code></pre>
+                <p><i>Save TIV values for all selected data in TIV.txt. Please note the multiple quotes to define the output name with a1.<br/>
+                The parameter a2 allows you to save only the TIV (1) or additionally to save also the global volumes for GM, WM, CSF, and WM hyperintensities (0). With parameter a3 you can add file names to the 1st column: 0 - save values only; 1 - add file name; 2 - add folder and file names.</i></p>
+                Please note that you must also define parameter a2 if you use parameter a3.<br/><br/>
+
+                <h5>Estimate mean volumes and mean surface values inside ROI</h5>
+                <p>This step is optional (as an alternative to the ENIGMA Freesurfer protocol).</p>
+                <pre><code>
+/software/CAT26.0_MCR/standalone/cat_standalone.sh -m /software/CAT26.0_MCR/R2023b \
+  -b /software/CAT26.0_MCR/standalone/cat_standalone_get_ROI_values.m \
+  /data/enigma-data/raw/CAT26.0/label/catROI*.xml -a1 "'ROI'"
+                </code></pre>
+                <p><i>Save mean surface values (e.g. cortical thickness) and mean volumes (in ml) for all selected data in a csv-file. The csv-file is named "ROI_" followed by the atlas name and the name of the measure (e.g. thickness or Vgm).</i></p>
+                Please note the multiple quotes to define the ROI name.<br/><br/>
+
+                <h4>Parallelization of the standalone version</h4>
+                <p>In contrast to the Matlab standard version of CAT, the standalone version only supports serial preprocessing of multiple files. In order to speed up preprocessing and to distribute your jobs or batches to several processors or cores, you can use the script standalone/cat_parallelize.sh:</p>
+                <pre><code>
+/software/CAT26.0_MCR/standalone/cat_parallelize.sh -p 8 -l /tmp \
+  -c "-m /software/CAT26.0_MCR/R2023b \
+  -b /software/CAT26.0_MCR/standalone/cat_standalone_segment_enigma.m" \
+  /data/enigma-data/raw/sub*.nii
+                </code></pre>
+                <p><i>Parallelize CAT ENIGMA preprocessing by splitting all sub*.nii files into 8 jobs (processes) and save log file in /tmp folder.
+                </i></p>
+
+              </div>
+            </div>
+          </article>
+
+        <!-- standard -->
+          <article id="standard" class="panel secondary">
+            <div class="content">
+              <ul class="actions animated spinX">
+                <li><a href="#" class="button small back">Home</a></li>
+              </ul>
+              <div class="inner">
+                <header>
+                  <h2>Matlab Standard Version of CAT26</h2>
+                </header>
+
+                <h3>Use of the standard version of CAT26</h3>
+
+                <p>You need a Matlab license to run the standard version of CAT.</p>
+
+                <h4>Installation of CAT26</h4>
+                <ol>
+                  <li>Download <a href="https://github.com/ChristianGaser/cat12/releases/download/26.0/cat26.0.zip">CAT26.0</a>. If you need other versions select them <a href="https://github.com/ChristianGaser/cat12/releases">here</a>.</li>
+                  <li>Unzip and copy the CAT folder to the spm/toolbox directory. Please note that the toolbox folder is now named "CAT" instead of "cat12". Please remove all older versions of CAT12 before installation. When CAT is started for the first time, it also offers to remove an old cat12 folder.</li>
+                </ol>
+
+                <h4>Calling CAT from the shell and running in headless mode without display</h4>
+                If you do not want to use the CAT and SPM graphical user interface, you can use the cat_standalone.sh script located in the CAT standalone folder to call batch files. You can use any of the supplied batches in the standalone folder, but you can also create your own batches using the batch manager in SPM. Please note that the supplied standalone batches must be called in CAT expert mode.<br/><br/>
+                The cat_standalone.sh script can be used with few changes with the same flags as for the standalone version. You just need to add the flags "-ns" to turn off standalone mode and "-e" to call CAT in expert mode. Also, the flag "-m" now defines the Matlab command and "-s" the SPM folder, but can be skipped if they are found automatically. For example, to preprocess (segment) files, you can call:<br/><br/>
+                <pre><code>
+your_spm_folder/toolbox/CAT/standalone/cat_standalone.sh -ns -e -m /usr/local/bin/matlab \
+  -b your_spm_folder/toolbox/CAT/standalone/cat_standalone_segment_enigma.m \
+  -s your_spm_folder /data/enigma-data/raw/sub*.nii.gz
+                </code></pre>
+
+                <p>See the <a href="#standalone">standalone version</a> for more examples.</p>
+
+                <h4>Use of CAT</h4>
+                <p>See the <a href="https://neuro-jena.github.io/cat12-help/index.html#quick">Quick Start Guide</a> for step-by-step instructions for using CAT and also check the <a href="https://neuro-jena.github.io/cat12-help/">CAT Manual</a>.</p>
+
+                <h4><red>Important</red></h4>
+                <red><p>CAT should be used in "expert mode" either by calling "CAT('expert')" from the Matlab command line or by using "Switch to Expert Mode" in the CAT GUI.</p></red>
+
+                <h5>DICOM Import</h5>
+                <p>Use "DICOM Import" from the SPM GUI.</p>
+
+                <h5>Preprocessing</h5>
+                <p>Load "standalone/cat_standalone_segment_enigma.m" in SPM batch manager and select your files and run preprocessing.</p>
+
+                <h5>Smoothing of Volume Data</h5>
+                Use "Smooth" from the SPM GUI and select the warped segmentations in the "mri" folder:  "mwp1*" and "wp1*" for gray matter (modulated warped/warped) and "mwp2*" and "wp2*" for white matter (modulated warped/warped).<br/>
+                The recommended smoothing size for analyzing the data is 6mm. In order to use the data for machine learning with <a href="http://proniapredictors.eu/neurominer/index.html">NeuroMiner</a> no smoothing is necessary.<br/><br/>
+
+                <h5>Resample and Smooth Surface Data</h5>
+                Use "Resamp. &amp; Smooth Surf." from the CAT GUI and select the thickness files of the left hemisphere (lh.thickness.*) in the "surf" folder. The right hemisphere is processed automatically.<br/>
+                The recommended smoothing size for analyzing the surface data is 12mm. In order to use the data for machine learning with <a href="http://proniapredictors.eu/neurominer/index.html">NeuroMiner</a> no smoothing is necessary and the filter size should be set to "0".<br/><br/>
+
+                <h5>Estimate and Save Quality Measures for Volume and Surface Data</h5>
+                <p>Use "Tools -> Save sample homogeneity for very large samples" from the CAT batch menu (SPM -> Tools -> CAT).</p>
+
+                <h5>Estimate and Save Weighted Overall Image Quality</h5>
+                <p>Use "Data Quality -> Get Weighted Overall Image Quality" from the CAT GUI.</p>
+
+                <h5>Estimate Total Intra-cranial Volume (TIV)</h5>
+                <p>Use "Get TIV" from the CAT GUI.</p>
+
+                Optional (with graphical output):
+                <h5>Check Sample Homogeneity for Volume and Surface Data</h5>
+                <p>Use "Data Quality -> Check Sample Homogeneity" from the CAT GUI.</p>
+
+                Optional (as an alternative to the ENIGMA Freesurfer protocol):
+                <h5>Estimate mean volumes and mean surface values inside ROI</h5>
+                <p>Use "ROI Tools -> Estimate Mean Value Inside ROI for External Analysis" from the CAT GUI and select the catROI*xml files in the label folder.</p>
+
+                Optional (for general use with other machine learning tools):
+                <h5>Save Volume or Surface Data as mat File</h5>
+                Use "Volume Tools -> Save (resampled) Volume Data as mat-File" from the CAT GUI and select smoothed gray/white matter segmentations (modulated normalized or affine registered DARTEL export).<br/>
+                Use "Surface Tools -> Save Surface Data as mat-File" from the CAT GUI and select resampled and smoothed surface data.<br/><br/>
+
+                <h4>Parallelization of the standard version</h4>
+                <p>In order to speed up preprocessing and to distribute your jobs or batches to several processors or cores, there are two different options:</p>
+                <ol>
+                  <li>You can use the script standalone/cat_parallelize.sh. However, you also need to use the flag "-fg" with cat_standalone.sh to prevent the internal parallelization from being used:</li>
+                <pre><code>
+your_spm_folder/toolbox/CAT/standalone/cat_parallelize.sh -p 8 -l /tmp \
+  -c "your_spm_folder/toolbox/CAT/standalone/cat_standalone.sh -fg -ns -e -m /usr/local/bin/matlab \
+  -b your_spm_folder/toolbox/CAT/standalone/cat_standalone_segment_enigma.m" \
+  /data/enigma-data/raw/sub*.nii
+                </code></pre>
+                <p><i>Parallelize CAT ENIGMA preprocessing by splitting all sub*.nii files into 8 jobs (processes) and save the log file into the /tmp folder.
+                </i></p>
+                  <li>Call cat_standalone.sh and the parallelization will be handled automatically. By default, CAT uses half of the available processors. You can adjust the number of processors in cat_defaults (e.g. "cat.extopts.nproc = 4;"):</li>
+                <pre><code>
+your_spm_folder/toolbox/CAT/standalone/cat_standalone.sh -ns -e -m /usr/local/bin/matlab \
+  -b your_spm_folder/toolbox/CAT/standalone/cat_standalone_segment_enigma.m \
+  -s your_spm_folder /data/enigma-data/raw/sub*.nii.gz
+                </code></pre>
+                <p><i>Parallelize CAT ENIGMA preprocessing by splitting all sub*.nii.gz files into the number of available or defined jobs (processes).
+                </i></p>
+                </ol>
+
+
+              </div>
+            </div>
+          </article>
+
+        <!-- Footer -->
+          <footer id="footer">
+            <p class="copyright">&copy; <a href="mailto:christian.gaser@uni-jena.de">Christian Gaser</a>, Jena University Hospital. All rights reserved.<br/>
+            Design Template: <a href="https://pixelarity.com//">Pixelarity</a></p>
+          </footer>
+
+      </div>
+
+    <!-- Scripts -->
+      <script src="assets/js/jquery.min.js"></script>
+      <script src="assets/js/browser.min.js"></script>
+      <script src="assets/js/breakpoints.min.js"></script>
+      <script src="assets/js/util.js"></script>
+      <script src="assets/js/main.js"></script>
+
+  </body>
+</html>

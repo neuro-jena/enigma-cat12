@@ -38,7 +38,22 @@
               <div class="inner">
                 <header>
                   <h2>Computational Anatomy Toolbox for Standardized Processing of ENIGMA Data</h2>
-                  <p>These protocols use <a href="https://neuro-jena.github.io/cat/">CAT12</a> to process voxel- and surface-based morphometry for MRI data in a standardized way for <a href="https://enigma.ini.usc.edu/">ENIGMA</a> data, but also enable region-based measures for volume and surface data. CAT12 includes various quality control options and covers the entire analysis workflow, from cross-sectional or longitudinal data processing, to the statistical analysis, and visualization of results. The current version is CAT12.9. If you need the previous version CAT12.8.2 use this <a href="index_CAT128.html">link</a>.</p><br/>
+                  <p>These protocols use <a href="https://neuro-jena.github.io/cat/">CAT12</a> to process voxel- and surface-based morphometry for MRI data in a standardized way for <a href="https://enigma.ini.usc.edu/">ENIGMA</a> data, but also enable region-based measures for volume and surface data. CAT12 includes various quality control options and covers the entire analysis workflow, from cross-sectional or longitudinal data processing, to the statistical analysis, and visualization of results. This page describes CAT12.9.</p><br/>
+
+                  <div class="box" style="text-align: left;">
+                    <p><b>Which CAT version should I use?</b></p>
+                    <p>The ENIGMA protocols are changed only rarely, because all sites of a project have to process their data with the same pipeline. Results of different CAT versions (e.g. cortical thickness) are not directly comparable, so please never change the version within a running project.</p>
+                    <ul style="font-size: 0.9em;">
+                      <li><b>Ongoing projects:</b> please continue with CAT12.9 (this page).</li>
+                      <li><b>New projects:</b> if all ENIGMA partners start processing at the same time, the new <a href="index_CAT26.html">CAT26</a> is a good option. Please agree on the version with all partners before processing starts.</li>
+                    </ul>
+                    <ul class="actions" style="text-align: center;">
+                      <li><a href="index.html" class="button primary small">CAT12.9 (ongoing projects)</a></li>
+                      <li><a href="index_CAT26.html" class="button small">CAT26 (new projects)</a></li>
+                      <li><a href="index_CAT128.html" class="button small">CAT12.8.2</a></li>
+                    </ul>
+                  </div>
+
                   <p>You can either use the <a href="#standalone">standalone version</a> or the <a href="#standard">standard version</a> of CAT12. The advantage of the standalone version is that no Matlab license is needed. Only the (free) Matlab Runtime has to be downloaded.</p><br/>
                   <p>For any questions or suggestions please contact <a href="mailto:christian.gaser@uni-jena.de">me</a>.</p>
                   <p>Christian Gaser, Jena University Hospital</p>
@@ -220,7 +235,7 @@
                 <pre><code>
 /software/CAT12.9_MCR/standalone/cat_parallelize.sh -p 8 -l /tmp \
   -c "-m /software/CAT12.9_MCR/v232 \
-  -b /software/CAT12.9_MCR/standalone/cat_standalone_segment_enigma.m" \ 
+  -b /software/CAT12.9_MCR/standalone/cat_standalone_segment_enigma.m" \
   /data/enigma-data/raw/sub*.nii
                 </code></pre>
                 <p><i>Parallelize CAT12 ENIGMA preprocessing by splitting all sub*.nii files into 8 jobs  (processes) and save log file in /tmp folder.
@@ -311,7 +326,7 @@ your_spm12_folder/toolbox/cat12/standalone/cat_standalone.sh -ns -e -m /usr/loca
                 <pre><code>
 /software/CAT12.9_MCR/standalone/cat_parallelize.sh -p 8 -l /tmp \
   -c "your_spm12_folder/toolbox/cat12/standalone/cat_standalone.sh -fg -ns -e -m /usr/local/bin/matlab \
-  -b /software/CAT12.9_MCR/standalone/cat_standalone_segment_enigma.m" \ 
+  -b /software/CAT12.9_MCR/standalone/cat_standalone_segment_enigma.m" \
   /data/enigma-data/raw/sub*.nii
                 </code></pre>
                 <p><i>Parallelize CAT12 ENIGMA preprocessing by splitting all sub*.nii files into 8 jobs (processes) and save the log file into the /tmp folder.
